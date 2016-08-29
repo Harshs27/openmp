@@ -1,1 +1,1 @@
-# cse6230
+# CSE6230 -- High Performance Computing: Tools and Applications
