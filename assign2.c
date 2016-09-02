@@ -48,10 +48,10 @@ int main(){
     struct x *ptr_ini;
     int t, i;
     double avg_dist, distance_moved;
-    double delta_t;
+    double delta_t, const1;
     ptr_x = (struct x *)malloc(N_PARTICLES*sizeof(struct x));
 	ptr_ini = (struct x *)malloc(N_PARTICLES*sizeof(struct x));
-
+	const1 = sqrt(0.0002);
     distance_moved = 0;// sum of distance moved in each step ///NOTE: should be reduced variable of FOR LOOP
     FILE *fptr;
     clock_t tic;
@@ -80,10 +80,10 @@ int main(){
             else{
 //                delta_t = 0.0001;// step size
                 // find the new position of x
-                ptr_x[i].m = ptr_x[i].m + sqrt(0.0002) * get_rand(-1, 1);
+                ptr_x[i].m = ptr_x[i].m + const1 * get_rand(-1, 1);
 //				printf("%d\tt_val = %f\n",t, ptr_x[i].m);
-				ptr_x[i].n = ptr_x[i].n + sqrt(0.0002) * get_rand(-1, 1);
-				ptr_x[i].p = ptr_x[i].p + sqrt(0.0002) * get_rand(-1, 1);
+				ptr_x[i].n = ptr_x[i].n + const1 * get_rand(-1, 1);
+				ptr_x[i].p = ptr_x[i].p + const1 * get_rand(-1, 1);
                 distance_moved = distance_moved + dist(ptr_x[i], ptr_ini[i]); // calculates the displacement of vector x
             }
         }
