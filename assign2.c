@@ -7,7 +7,7 @@
 # define N_PARTICLES 10000
 # define TOTAL_STEPS 5000
 # define STEP_SIZE 500 
-# define NUM_THREADS 8 
+# define NUM_THREADS 1 
 
 struct x{// Considering m, n, p as the 3 axis 
     double m;
@@ -16,8 +16,22 @@ struct x{// Considering m, n, p as the 3 axis
 };
 
 
+unsigned long
+x=123456789,y=362436069,z=521288629,w=88675123,v=886756453;
+      /* replace defaults with five random seed values in calling program */
+unsigned long xorshift(void)
+{
+    unsigned long t;
+    t=(x^(x>>7));
+    x=y; y=z; z=w; w=v;
+    v=(v^(v<<6))^(t^(t<<13));
+    return (y+y+1)*v;
+}
+
+
 double get_rand(int a, int b){//gen random num between (a, b)
-    return a+(b-a)*(double)rand() / (double)((unsigned)RAND_MAX + 1);
+//    return a+(b-a)*(double)rand() / (double)((unsigned)RAND_MAX + 1);
+	return a+(b-a)*((double)xorshift()/(unsigned)(2*RAND_MAX+1));
 }
 
 double sq(double a){

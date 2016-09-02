@@ -3,10 +3,10 @@
 #include<time.h>
 #include<math.h>
 
-#define NUM_THREADS 1 
+#define NUM_THREADS 4 
 
 // USING Marsaglia random number generator..
-static unsigned long
+unsigned long
 x=123456789,y=362436069,z=521288629,w=88675123,v=886756453;
       /* replace defaults with five random seed values in calling program */
 unsigned long xorshift(void)
@@ -36,7 +36,7 @@ int main(){
 //		sum = sum + 1;
 		if(i<30){
 		//	printf("Random num = %f\n", get_rand(0, 1));
-//			printf("new_tech = %lu\n", xorshift());
+			printf("new_tech = %f\n", (double)xorshift()/(unsigned)(2*RAND_MAX+1));
 		}
 		a = xorshift();
 //		stall = get_rand(0, 1);
